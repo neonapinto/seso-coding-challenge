@@ -13,8 +13,8 @@ module.exports = async (log_sources, printer) => {
 
   //initialize the priority queue
   var priority_queue = new PriorityQueue(function(a, b) {
-    if (a.item.date > b.item.date) return -1;
-    if (a.item.date < b.item.date) return 1;
+    if (a.node.date > b.node.date) return -1;
+    if (a.node.date < b.node.date) return 1;
     return 0;
   });
 
@@ -52,7 +52,7 @@ module.exports = async (log_sources, printer) => {
     //dequeue the log with lowest date
     const log_obj = priority_queue.deq();
     //print the log
-    printer.print(log_obj.item);
+    printer.print(log_obj.node);
 
     //and then asynchronously enqueue it
     await Promise.all(log_sources.map(async () => {
