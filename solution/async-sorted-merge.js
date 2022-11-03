@@ -32,7 +32,7 @@ module.exports = async (log_sources, printer) => {
     }
 
     //enqueue the log
-    priorityQueue.enq({
+    priority_queue.enq({
       node: node,
       log_source: log_source,
     });

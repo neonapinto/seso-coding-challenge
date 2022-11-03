@@ -8,7 +8,7 @@ const PriorityQueue = require('priorityqueuejs');
 module.exports = (log_sources, printer) => {
   
   //initialize the priority queue
-  var priorityQueue = new PriorityQueue(function(a, b) {
+  var priority_queue = new PriorityQueue(function(a, b) {
     if (a.node.date > b.node.date) return -1;
     if (a.node.date < b.node.date) return 1;
     return 0;
@@ -29,7 +29,7 @@ module.exports = (log_sources, printer) => {
     }
 
     //Enqueue funtion to add into the priority queue 
-    priorityQueue.enq({
+    priority_queue.enq({
       node: node,
       log_source: log_source,
     });
@@ -49,8 +49,8 @@ module.exports = (log_sources, printer) => {
    * enqueue ref to the logsource
    * **/
 
-  while (!priorityQueue.isEmpty()) {
-    const log_obj = priorityQueue.deq();
+  while (!priority_queue.isEmpty()) {
+    const log_obj = priority_queue.deq();
     printer.print(log_obj.node);
     enqueueUtil(log_obj.log_source);
   }
